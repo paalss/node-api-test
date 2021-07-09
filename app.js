@@ -1,7 +1,11 @@
+const importApi = require("./importApi");
+
 const http = require("http");
 
 const hostname = "localhost";
 const port = 3000;
+
+importApi();
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
