@@ -8,7 +8,7 @@ function importApi() {
       if (err) {
         return console.log(err);
       }
-      console.log(res.body.data);
+      console.log(res.body.data[0]);
     }
   );
 }
