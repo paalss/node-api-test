@@ -5,18 +5,19 @@ const http = require("http");
 const hostname = "localhost";
 const port = 3000;
 
-fetchData();
-async function fetchData() {
-  const api = await importApi();
-  console.log(api);
-}
+const server = http.createServer(async (req, res) => {
+  let apiData = await importApi();
 
-const server = http.createServer((req, res) => {
+  console.log(typeof apiData);
+  apiData = JSON.stringify(apiData, null, 2);
+  // apiData = JSON.stringify(apiData, null, "\t");
+
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
   const html = `
-    <h1>eeeeee</h1>
-    <p>qqqqqqqeeeeee</p>
+    <h1>API demo</h1>
+    <p>data fra Fireball data API</p>
+    <pre>${apiData}</pre>
   `;
   res.end(html);
 });
