@@ -1,15 +1,17 @@
 function importApi() {
-  const request = require("request");
+  const got = require("got");
 
-  request(
-    "https://ssd-api.jpl.nasa.gov/fireball.api?date-min=2020-02-15&req-loc=true",
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(res.body.data[0]);
+  return (async () => {
+    try {
+      const response = await got(
+        "https://ssd-api.jpl.nasa.gov/fireball.api?date-min=2020-02-15&req-loc=true",
+        { json: true }
+      );
+      // console.log(response.body.data[0]);
+      return response.body.data[0];
+    } catch (error) {
+      console.log(error.response.body);
     }
-  );
+  })();
 }
 module.exports = importApi;

@@ -5,7 +5,11 @@ const http = require("http");
 const hostname = "localhost";
 const port = 3000;
 
-importApi();
+fetchData();
+async function fetchData() {
+  const api = await importApi();
+  console.log(api);
+}
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
