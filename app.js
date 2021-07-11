@@ -45,7 +45,7 @@ const server = http.createServer(async (req, res) => {
       }
     </style>
     <h1>API demo</h1>
-    <p>data fra Fireball data API</p>
+    <p>data fra Fireball API</p>
     <pre>${apiData}</pre>
   `;
   res.end(html);
