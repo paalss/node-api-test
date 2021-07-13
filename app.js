@@ -8,15 +8,26 @@ const port = 3000;
 
 const server = http.createServer(async (req, res) => {
   let apiData = await importApi();
-  console.log(apiData.body.url);
+  // console.log(apiData.body.url);
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
 
   let media;
+  // console.log(apiData.body.media_type);
   if (apiData.body.media_type === "image") {
     media = `<img src=${apiData.body.url} alt="" />`;
   } else {
-    media = `<video src=${apiData.body.url}>`;
+    media = `
+      <video>
+        <source src="${apiData.body.url}" />
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+      <br />
+      <b>Ressurser om loade gltf. (Gltf faller innenfor video media_type)</b>
+      <a href="https://threejs.org/examples/">https://threejs.org/examples/</a>
+      <a href="https://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html">https://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html</a>
+      <a href="https://stackoverflow.com/questions/66622131/add-video-player-to-a-glb-model-with-controls">https://stackoverflow.com/questions/66622131/add-video-player-to-a-glb-model-with-controls</a>
+    `;
   }
 
   const html = `<style>
